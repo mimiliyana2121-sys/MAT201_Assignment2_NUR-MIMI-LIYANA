@@ -31,7 +31,14 @@ Z = z_func(X, Y)
 fig = go.Figure(data=[go.Surface(z=Z, x=X, y=Y, opacity=0.8)])
 # Add the point and the gradient vector
 fig.add_trace(go.Scatter3d(x=[x_p], y=[y_p], z=[z_p], mode='markers', marker=dict(size=8, color='red')))
-fig.add_trace(go.Line3d(x=[x_p, x_p+gx*0.5], y=[y_p, y_p+gy*0.5], z=[z_p, z_p], line=dict(color='yellow', width=7)))
+fig.add_trace(go.Scatter3d(
+    x=[x_p, x_p + gx*0.3], 
+    y=[y_p, y_p + gy*0.3], 
+    z=[z_p, z_p], 
+    mode='lines',
+    line=dict(color='yellow', width=10),
+    name="Gradient Vector"
+))
 
 st.plotly_chart(fig)
 st.write(f"**Gradient Vector at ({x_p}, {y_p}):** ∇f = <{gx:.2f}, {gy:.2f}>")
